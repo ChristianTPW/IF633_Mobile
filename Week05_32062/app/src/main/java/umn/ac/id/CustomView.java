@@ -112,6 +112,7 @@ public class CustomView extends View {
                 awalX = x;
                 awalY = y;
             }
+            clear = false;
         }
     }
 
