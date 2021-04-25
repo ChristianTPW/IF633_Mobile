@@ -2,6 +2,7 @@ package umn.ac.id;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         Retrofit retro = new Retrofit.Builder().baseUrl("https://jsonplaceholder.typicode.com/").addConverterFactory(GsonConverterFactory.create()).build();
 
@@ -37,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(@NonNull Call<ArrayList<Data>> call, @NonNull Response<ArrayList<Data>> response) {
-                Log.e("tag", String.valueOf(response.code()));
 
                 if (response.isSuccessful()) {
                     ArrayList<Data> data = response.body();
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<Data>> call, Throwable t) {
-                Log.e("tag", String.valueOf(call));
+                Log.e("tag", String.valueOf(t));
 
             }
 
